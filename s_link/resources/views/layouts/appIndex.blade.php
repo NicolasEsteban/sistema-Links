@@ -16,11 +16,11 @@
   <title>Sistema de link</title>
 
   <!-- Custom fonts for this template-->
-  <link href="archivosPlantilla/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="{{ asset('archivosPlantilla/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="archivosPlantilla/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="{{ asset('archivosPlantilla/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
 </head>
 
@@ -33,10 +33,11 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
+        <div class="sidebar-brand-text mx-3">NMF</div>
         <div class="sidebar-brand-text mx-3"></div>
       </a>
 
@@ -45,7 +46,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -59,13 +60,35 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
+      @if(Auth::user()->name =='admin')
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Components</span>
+          <i class='far fa-address-book'></i>
+          <span>Usuarios</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <!--agregar componentes aqui-->
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href=""><i class='fas fa-user-plus'></i> Crear nuevo usuario</a>
+            <a class="collapse-item" href=""><i class='far fa-eye'></i> Ver lista de usuarios</a>
+            
+
+          </div>
+        </div>
+      </li>
+      @endif
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Links almacenados</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+          
+            <a class="collapse-item" href=""><i class="fa fa-link"></i> Crear nuevo link</a>
+            <a class="collapse-item" href=""><i class='fas fa-chart-area'></i> Ver graficos</a>
+            <div class="collapse-divider"></div>
+          </div>
         </div>
       </li>
 
@@ -186,7 +209,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
+            <span></span>
           </div>
         </div>
       </footer>
@@ -232,14 +255,14 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="archivosPlantilla/vendor/jquery/jquery.min.js"></script>
-  <script src="archivosPlantilla/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ asset('archivosPlantilla/vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{ asset('archivosPlantilla/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="archivosPlantilla/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="{{ asset('archivosPlantilla/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="archivosPlantilla/js/sb-admin-2.min.js"></script>
+  <script src="{{ asset('archivosPlantilla/js/sb-admin-2.min.js')}}"></script>
 
 </body>
 
