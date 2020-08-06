@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 //bd
 use App\User;
 use DB;
@@ -35,10 +37,35 @@ class UserController extends Controller
         
     }
 
-    public function verDatos($id)
+    public function show($id)
     { 
-        $users = DB::table('users')->where('id', '=', $id)->get();
-        return view('admin.ver');
+        $user = User::findOrFail($id);
+        return view('admin.ver',['user'=>$user]);
     
     } 
+
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin.edit',['user'=>$user]);
+    }
+
+    public function update(Request $request,$id)
+    {
+        $user =  User::findOrFail($id);
+        $user->username = $request->get('username');
+        $user->name = $request->get('name');
+        $user->tipo = $request->get('tipo');
+        $user->password = Hash::make($request->get('password'));
+        $user->save();
+        return Redirect::to('users');
+
+    }
+
+    public function destroy($id){
+        $user = User::find($id);
+        $user->delete();    
+        return Redirect::to('users');
+        
+    }
 }

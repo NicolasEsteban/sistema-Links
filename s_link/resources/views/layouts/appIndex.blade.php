@@ -236,7 +236,7 @@
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Seleccione "Logout" si quiere cerrar su sesion.</div>
+        <div class="modal-body">Seleccione "Salir" si quiere cerrar su sesion.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
           <a class="btn btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -245,10 +245,6 @@
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
           </form>
-          
-          
-          
-
         </div>
       </div>
     </div>

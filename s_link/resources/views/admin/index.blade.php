@@ -15,6 +15,7 @@
                 <tr>
                   <th>Nombre de usuario</th>
                   <th>Nombre del usuario registrado</th>
+                  <th>Tipo de usuario</th>
                   <th>Acciones</th>
                 </tr>
               </thead>
@@ -24,10 +25,12 @@
                   <tr>
                     <td>{{$usu->name}}</td>
                     <td>{{$usu->username}}</td>
+                    <td>{{$usu->tipo}}</td>
                     <td> <a  href="/ver/{{ $usu -> id}}" class="btn btn-primary" ><i class="fa fa-eye"></i> </a>
-                         <a href="" class="btn btn-warning"> <i class="fa fa-edit"></i> </a>
-                         <a href="" class="btn btn-danger"> <i class="fa fa-trash"></i> </a></td>
+                         <a href="{{URL::action('UserController@edit', $usu -> id)}}" class="btn btn-warning"> <i class="fa fa-edit"></i> </a>
+                         <a href="" data-target="#modal-delete-{{$usu->id}}" data-toggle="modal" class="btn btn-danger"> <i class="fa fa-trash"></i> </a></td>
                   </tr>
+                  @include('admin.modal')
                   @endforeach
               </tbody>
           </table>
