@@ -5,9 +5,18 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+//use App\Images;
+use DB;
+use Image;
+use File; 
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+/*
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;*/
 
 class RegisterController extends Controller
 {
@@ -49,10 +58,11 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        
         return Validator::make($data, [
-            'username' =>  ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
-           
+            'photo'=> ['image','mimes:jpg,jpeg,png,gif,svg'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -65,11 +75,49 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+      
+        $photo =null;
+        if($data['photo']){
+
+            
+            $path = '/fotos_perfil/';
+            $fileName = $data['username'].'-'.$data['name'].'.jpg';
+            $file = $data['photo'];
+            /*$file = Image::make($file)->encode('jpg',60);
+            $file->resize(464, 218,function($constraint){
+                $constraint->upsize();
+            });*/
+            
+            $path = public_path('fotos_perfil/' . $fileName);
+            Image::make($file->getRealPath())->resize(464,null,function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->save($path);
+            $photo = '/fotos_perfil/'.$fileName;
+            /*$name =  $data['username'].'-'.$data['name'].'.jpg';
+            $image = $data['photo'];
+            $image = Image::make($image)->resize(464, 218)->encode('jpg',60);
+            $photo = '/fotos_egresados/'.$name;*/
+            
+            
+            //$image->save($path);
+            
+            /*$file = $data['photo'];
+            $imageName =  $data['username'].'-'.$data['name'].'.jpg';
+            $image = Image::make($file)->encode('jpg',60);
+            $image->resize(464, 218,function($constraint){
+                $constraint->upsize();
+            });
+            $photo='/fotos_perfil/'.$imageName;
+            $image->save('public/fotos_perfil/'.$imageName);
+            Storage::disk('public')->put("fotos_perfil/$imageName",$image->stream());*/
+
+        }
         return User::create([
             'username' => $data['username'],
             'name' => $data['name'],
             'tipo' => 'user',
-         
+            'photo' => $photo,
             'password' => Hash::make($data['password']),
         ]);
     }

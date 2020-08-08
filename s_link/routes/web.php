@@ -23,4 +23,6 @@ Auth::routes();
 Route::get('/home', 'UserController@index')->name('home');
 Route::get('/ver/{id}','Usercontroller@show');
 Route::resource('/users','UserController');
+Route::resource('/usersReg','UserRegController');
 Route::get('/eliminar/{id}','UserController@destroy');
+

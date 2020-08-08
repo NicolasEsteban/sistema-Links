@@ -68,4 +68,10 @@ class UserController extends Controller
         return Redirect::to('users');
         
     }
+
+    public function regis(Request $request){
+        
+        return 'hola mundis';
+        
+    }
 }
