@@ -68,7 +68,7 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href=""><i class='fas fa-user-plus'></i> Crear nuevo usuario</a>
+            <a class="collapse-item" href="/users/create"><i class='fas fa-user-plus'></i> Crear nuevo usuario</a>
             <a class="collapse-item" href=""><i class='far fa-eye'></i> Ver lista de usuarios</a>
             
 

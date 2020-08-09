@@ -80,13 +80,10 @@ class RegisterController extends Controller
         if($data['photo']){
 
             
-            $path = '/fotos_perfil/';
+            //$path = '/fotos_perfil/';
             $fileName = $data['username'].'-'.$data['name'].'.jpg';
             $file = $data['photo'];
-            /*$file = Image::make($file)->encode('jpg',60);
-            $file->resize(464, 218,function($constraint){
-                $constraint->upsize();
-            });*/
+        
             
             $path = public_path('fotos_perfil/' . $fileName);
             Image::make($file->getRealPath())->resize(464,null,function ($constraint) {
