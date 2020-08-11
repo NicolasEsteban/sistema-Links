@@ -7,7 +7,7 @@
     </div>
     <div class="card-body">
      
-      <form  method="POST" action="/users/{{$user->id }}">
+      <form  method="POST" action="/users/{{$user->id }}" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         <div class="form-group row">
@@ -34,9 +34,16 @@
         </div>
 
         <div class="form-group row">
+            <label for="photo" class="col-sm-2 col-form-label">Cargar imagen: </label>
+            <div class="col-sm-8">
+               <input id="photo" type="file" class="form-control form-control-user"  name="photo"  placeholder="Imagen" >
+            </div>
+        </div>
+
+        <div class="form-group row">
             <label for="password" class="col-sm-2 col-form-label">Contraseña: </label>
             <div class="col-sm-8">
-                <input id="password" type="password" class="form-control form-control-user"  name="password" placeholder="" value="" required>
+                <input id="password" type="text" class="form-control form-control-user"  name="password" placeholder="" value="" required>
             </div>
         </div>
 
